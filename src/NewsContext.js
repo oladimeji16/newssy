@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 
 import Axios from 'axios';
 
@@ -11,14 +11,14 @@ export const NewsContextProvider = (props) => {
 
     useEffect(() => {
         Axios.get(`http://newsapi.org/v2/everything?q=rich&from=2020-10-20&sortBy=publishedAt&apiKey=${apiKey}`)
-        .then(response => setData(response.data()))
-        .catch(err => console.log(err))
+            .then(res => setData(res.data))
+                .catch(err => console.log(err))
     }, [data])
 
-    
+
     return (
-    <NewsContext.Provider value={{data}}>
-        {props.children}
+        <NewsContext.Provider value={{ data }}>
+            {props.children}
         </NewsContext.Provider>
     )
 }
